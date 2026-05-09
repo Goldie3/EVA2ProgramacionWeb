@@ -1,10 +1,10 @@
 const mysql = require('mysql2');
 // Crear la conexión
 const pool = mysql.createPool({
-    host: '10.32.0.78',
+    host: 'localhost',
     user: 'root',
-    password: 'admin',
-    database: 'datadb2',
+    password: '1234',
+    database: 'tabla_evaluacionweb',
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0
