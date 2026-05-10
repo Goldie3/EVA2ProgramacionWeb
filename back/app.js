@@ -145,7 +145,7 @@ app.delete('/habitaciones/:id', async (req, res) => {
   try {
     const query = 'DELETE FROM habitaciones_hostal WHERE id = ?';
     const [result] = await db.query(query, [id]);
-    res.status(200).json({
+    res.status(201).json({
       mensaje: 'Habitación eliminada con éxito',
       id: result.insertId
     });
