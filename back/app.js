@@ -6,9 +6,9 @@ app.use(express.json());
 
 
 
-app.get('/campanias',  async (req, res) => {
+app.get('/campanias', async (req, res) => {
   try {
-    const [rows] =  await db.query('SELECT * FROM campanias_marketing');
+    const [rows] = await db.query('SELECT * FROM campanias_marketing');
     res.json(rows);
   } catch (error) {
     res.status(500).send(error.message);
@@ -16,11 +16,14 @@ app.get('/campanias',  async (req, res) => {
 });
 
 
-app.get('/campanias/:id',  async (req, res) => {
+app.get('/campanias/:id', async (req, res) => {
   try {
     var id = req.params.id; // Obtenemos el ID de la URL
     const query = 'SELECT * FROM campanias_marketing WHERE id = ?';
     const [rows] = await db.query(query, [id]);
+    if (!rows[0]) {
+      return res.status(404).json({ error: 'Campaña no encontrada' });
+    }
     res.json(rows[0]);
   } catch (error) {
     res.status(500).send(error.message);
@@ -38,7 +41,7 @@ app.post('/campanias', async (req, res) => {
     const query = 'INSERT INTO campanias_marketing (nombre, canal, presupuesto, fecha_inicio, fecha_fin, objetivo, activa) VALUES (?, ?, ?, ?, ?, ?, ?)';
     const [result] = await db.query(query, [nombre, canal, presupuesto, fecha_inicio, fecha_fin, objetivo, activa]);
     res.status(201).json({
-      mensaje: 'Usuario guardado con éxito',
+      mensaje: 'Campaña guardada con éxito',
       id: result.insertId // Retornamos el ID generado en la DB
     });
   } catch (error) {
@@ -57,8 +60,11 @@ app.put('/campanias/:id', async (req, res) => {
     // Usamos "?" como placeholders para prevenir inyección SQL
     const query = 'UPDATE campanias_marketing SET nombre = ?, canal = ?, presupuesto = ?, fecha_inicio = ?, fecha_fin = ?, objetivo = ?, activa = ? WHERE id = ?';
     const [result] = await db.query(query, [nombre, canal, presupuesto, fecha_inicio, fecha_fin, objetivo, activa, id]);
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: 'Campaña no encontrada' });
+    }
     res.status(200).json({
-      mensaje: 'Usuario actualizado con éxito',
+      mensaje: 'Campaña actualizada con éxito',
       id: result.insertId // Retornamos el ID generado en la DB
     });
   } catch (error) {
@@ -71,8 +77,11 @@ app.delete('/campanias/:id', async (req, res) => {
   try {
     const query = 'DELETE FROM campanias_marketing WHERE id = ?';
     const [result] = await db.query(query, [id]);
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: 'Campaña no encontrada' });
+    }
     res.status(200).json({
-      mensaje: 'Usuario eliminado con éxito',
+      mensaje: 'Campaña eliminada con éxito',
       id: result.insertId
     });
   } catch (error) {
@@ -82,20 +91,23 @@ app.delete('/campanias/:id', async (req, res) => {
 
 // endpoints para tabla habitaciones_hostal
 
-app.get('/habitaciones',  async (req, res) => {
+app.get('/habitaciones', async (req, res) => {
   try {
-    const [rows] =  await db.query('SELECT * FROM habitaciones_hostal');
+    const [rows] = await db.query('SELECT * FROM habitaciones_hostal');
     res.json(rows);
   } catch (error) {
     res.status(500).send(error.message);
   }
 });
 
-app.get('/habitaciones/:id',  async (req, res) => {
+app.get('/habitaciones/:id', async (req, res) => {
   try {
     var id = req.params.id; // Obtenemos el ID de la URL
     const query = 'SELECT * FROM habitaciones_hostal WHERE id = ?';
     const [rows] = await db.query(query, [id]);
+    if (!rows[0]) {
+      return res.status(404).json({ error: 'Habitación no encontrada' });
+    }
     res.json(rows[0]);
   } catch (error) {
     res.status(500).send(error.message);
@@ -132,6 +144,9 @@ app.put('/habitaciones/:id', async (req, res) => {
     // Usamos "?" como placeholders para prevenir inyección SQL
     const query = 'UPDATE habitaciones_hostal SET codigo = ?, tipo = ?, capacidad = ?, precio_noche = ?, vista = ?, disponible = ? WHERE id = ?';
     const [result] = await db.query(query, [codigo, tipo, capacidad, precio_noche, vista, disponible, id]);
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: 'Habitación no encontrada' });
+    }
     res.status(200).json({
       mensaje: 'Habitación actualizada con éxito',
       id: result.insertId // Retornamos el ID generado en la DB
@@ -146,7 +161,10 @@ app.delete('/habitaciones/:id', async (req, res) => {
   try {
     const query = 'DELETE FROM habitaciones_hostal WHERE id = ?';
     const [result] = await db.query(query, [id]);
-    res.status(201).json({
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: 'Habitación no encontrada' });
+    }
+    res.status(200).json({
       mensaje: 'Habitación eliminada con éxito',
       id: result.insertId
     });
