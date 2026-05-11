@@ -120,6 +120,9 @@ app.post('/habitaciones', async (req, res) => {
   if (!codigo || !tipo || !capacidad || !precio_noche || !vista || disponible === undefined) {
     return res.status(400).json({ error: 'Todos los campos son obligatorios' });
   }
+  if (capacidad < 1 || capacidad > 20){
+    return res.status(400).json({ error: 'La capacidad debe ser un número mayor a 1 y menor o igual a 20' });
+  }
   try {
     // Usamos "?" como placeholders para prevenir inyección SQL
     const query = 'INSERT INTO habitaciones_hostal (codigo, tipo, capacidad, precio_noche, vista, disponible) VALUES (?, ?, ?, ?, ?, ?)';
@@ -140,6 +143,9 @@ app.put('/habitaciones/:id', async (req, res) => {
   if (!codigo || !tipo || !capacidad || !precio_noche || !vista || disponible === undefined) {
     return res.status(400).json({ error: 'Todos los campos son obligatorios' });
   }
+  if (capacidad < 1 || capacidad > 20){
+    return res.status(400).json({ error: 'La capacidad debe ser un número mayor a 1 y menor o igual a 20' });
+  } 
   try {
     // Usamos "?" como placeholders para prevenir inyección SQL
     const query = 'UPDATE habitaciones_hostal SET codigo = ?, tipo = ?, capacidad = ?, precio_noche = ?, vista = ?, disponible = ? WHERE id = ?';
