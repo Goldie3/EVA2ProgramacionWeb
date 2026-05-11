@@ -6,7 +6,7 @@ app.use(express.json());
 
 
 
-app.get('/campania',  async (req, res) => {
+app.get('/campanias',  async (req, res) => {
   try {
     const [rows] =  await db.query('SELECT * FROM campanias_marketing');
     res.json(rows);
@@ -14,6 +14,7 @@ app.get('/campania',  async (req, res) => {
     res.status(500).send(error.message);
   }
 });
+
 
 app.get('/campanias/:id',  async (req, res) => {
   try {

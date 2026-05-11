@@ -38,12 +38,12 @@
           }
         },
         "url": {
-          "raw": "{{servidor}}/campania",
+          "raw": "{{servidor}}/campanias",
           "host": [
             "{{servidor}}"
           ],
           "path": [
-            "campania"
+            "campanias"
           ]
         },
         "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
@@ -65,19 +65,39 @@
             "packages": {},
             "requests": {}
           }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
         }
       ],
       "request": {
         "method": "GET",
         "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"nombre\": \"\",\r\n    \"canal\": \"\",\r\n    \"presupuesto\": \"\",\r\n    \"fecha_inicio\": \"\",\r\n    \"fecha_fin\": \"\",\r\n    \"objetivo\": \"\",\r\n    \"activa\": \"\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
         "url": {
-          "raw": "{{servidor}}/campania/2",
+          "raw": "{{servidor}}/campanias/3",
           "host": [
             "{{servidor}}"
           ],
           "path": [
-            "campania",
-            "2"
+            "campanias",
+            "3"
           ]
         },
         "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
@@ -114,12 +134,12 @@
           }
         },
         "url": {
-          "raw": "{{servidor}}/campania",
+          "raw": "{{servidor}}/campanias",
           "host": [
             "{{servidor}}"
           ],
           "path": [
-            "campania"
+            "campanias"
           ]
         },
         "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
@@ -156,13 +176,13 @@
           }
         },
         "url": {
-          "raw": "{{servidor}}/campania/2",
+          "raw": "{{servidor}}/campanias/3",
           "host": [
             "{{servidor}}"
           ],
           "path": [
-            "campania",
-            "2"
+            "campanias",
+            "3"
           ]
         },
         "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
@@ -191,7 +211,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n    \"nombre\": \"eduardo\",\r\n    \"canal\": \"tvn\",\r\n    \"presupuesto\": \"30000\",\r\n    \"fecha_inicio\": \"2026-03-01\",\r\n    \"fecha_fin\": \"2026-12-02\",\r\n    \"objetivo\": \"esto es un test muy bacan\",\r\n    \"activa\": 1\r\n}",
+          "raw": "",
           "options": {
             "raw": {
               "language": "json"
@@ -199,13 +219,13 @@
           }
         },
         "url": {
-          "raw": "{{servidor}}/campania/2",
+          "raw": "{{servidor}}/campanias/4",
           "host": [
             "{{servidor}}"
           ],
           "path": [
-            "campania",
-            "2"
+            "campanias",
+            "4"
           ]
         },
         "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
@@ -284,13 +304,13 @@
           }
         },
         "url": {
-          "raw": "{{servidor}}/habitaciones/2",
+          "raw": "{{servidor}}/habitaciones/1",
           "host": [
             "{{servidor}}"
           ],
           "path": [
             "habitaciones",
-            "2"
+            "1"
           ]
         },
         "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
@@ -404,7 +424,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n    \"codigo\": \"12\",\r\n    \"tipo\": \"chiquitito\",\r\n    \"capacidad\": 1,\r\n    \"precio_noche\": \"5.00\",\r\n    \"vista\": \"esta tapado todo\",\r\n    \"disponible\": 0\r\n}",
+          "raw": "",
           "options": {
             "raw": {
               "language": "json"
@@ -412,13 +432,13 @@
           }
         },
         "url": {
-          "raw": "{{servidor}}/habitaciones/2",
+          "raw": "{{servidor}}/habitaciones/3",
           "host": [
             "{{servidor}}"
           ],
           "path": [
             "habitaciones",
-            "2"
+            "3"
           ]
         },
         "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
